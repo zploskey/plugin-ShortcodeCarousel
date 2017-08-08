@@ -53,6 +53,7 @@ class ShortcodeCarouselPlugin extends Omeka_Plugin_AbstractPlugin
     public static function carousel($args, $view)
     {
         static $id_suffix = 0;
+        $params = array();
         if (isset($args['is_featured'])) {
             $params['featured'] = $args['is_featured'];
         }
@@ -86,8 +87,15 @@ class ShortcodeCarouselPlugin extends Omeka_Plugin_AbstractPlugin
         } else {
             $limit = 10;
         }
-        $params['hasImage'] = 1;
-        $items = get_records('Item', $params, $limit);
+
+        if (isset($args['record_type'])) {
+            $recordType = $args['record_type'];
+        } else {
+            $recordType = 'Item';
+            $params['hasImage'] = 1;
+        }
+
+        $items = get_records($recordType, $params, $limit);
 
         //handle the configs for jCarousel
         $configs = array('carousel' => array());
