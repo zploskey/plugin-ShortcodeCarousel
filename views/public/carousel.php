@@ -6,11 +6,10 @@
             
             <?php if ($item instanceof AdminImage): ?>
                 <a href="<?php echo $item->href; ?>" class="shortcode-carousel-image">
-                <img class="admin-image"
-                    id="<?php echo $item->id; ?>"
+                <img id="<?php echo $item->id; ?>"
                     src="<?php echo $item->getUrl('original'); ?>"
                     alt="<?php echo $item->alt; ?>"
-                    title="<?php echo $item->title; ?>"/>
+                    title="<?php echo $item->alt; ?>"/>
                 </a>
             <?php else:
                 link_to_item(
