@@ -9,7 +9,7 @@
                 <img class="admin-image"
                     id="<?php echo $item->id; ?>"
                     src="<?php echo $item->getUrl('original'); ?>"
-                    alt="<?php echo $item->alt; ?>'"
+                    alt="<?php echo $item->alt; ?>"
                     title="<?php echo $item->title; ?>"/>
                 </a>
             <?php else:
