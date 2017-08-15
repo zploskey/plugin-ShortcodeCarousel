@@ -97,6 +97,25 @@ class ShortcodeCarouselPlugin extends Omeka_Plugin_AbstractPlugin
 
         $items = get_records($recordType, $params, $limit);
 
+        if (empty($args['sort']) AND isset($args['ids'])) {
+            // use the order of the ids provided
+            $ids = explode(',', $args['ids']);
+            $idsToRecord = array();
+            foreach ($items as $it) {
+                $id = (int)($it->id);
+                $idsToRecord[$id] = $it;
+            }
+            $newItems = array();
+            foreach ($ids as $id) {
+                if (isset($idsToRecord[$id])) {
+                    $newItems[] = $idsToRecord[$id];
+                }
+            }
+            if ($newItems) {
+                $items = $newItems;
+            }
+        }
+
         //handle the configs for jCarousel
         $configs = array('carousel' => array());
 
